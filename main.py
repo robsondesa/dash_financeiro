@@ -1,8 +1,7 @@
-# app.py
-
+import os
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 import plotly.graph_objs as go
 
 # Inicia o app Dash
@@ -43,6 +42,9 @@ app.layout = html.Div(children=[
     ),
 ])
 
-# Inicia o servidor
+# Pega a variável de ambiente PORT ou usa a porta 8050 como fallback
+port = int(os.environ.get('PORT', 8050))
+
+# Inicia o servidor na porta correta
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=True, host='0.0.0.0', port=port)
